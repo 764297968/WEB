@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        .confirm {
+            width: 70%;
+            margin: 0 15%;
+            height: 4.5rem;
+            background: #d26d4d;
+            position: absolute;
+            left: 0;
+            top: 20%;
+            display: none;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <script src="../Js/jquery.min.js"></script>
+    <script src="bootbox.js"></script>
+</head>
+<body>
+
+    <div class="confirm">
+        <p style="text-align:center">确定继续吗?</p>
+        <div style="text-align:center" id="btn">
+            <input type="button" data-bb-handler="confirm"  class="con"value="确定"  /> 
+            <input type="button" data-bb-handler="cancel" class="can" value="取消"  />
+        </div>
+    </div>
+    <input type="button"  onclick="con()" />
+</body>
+
+</html>
+<script>
+    var box = new Object();
+    function con()
+    {
+        box.confirm("")
+        bootbox.confirm("确定?", function (res) {
+            console.log(2);
+        })
+        $(".confirm").show();
+        $("#btn input").on("click", function (e) {
+            var key = $(this).attr("data-bb-handler");
+            if (key == "confirm")
+            {
+                console.log('ok');
+            } else {
+                console.log("cancel");
+            }
+        });
+        //confirm(function (res) {
+        //    console.log(res);
+        //})
+         
+    }
+    function confirm(res)
+    {
+        $(".confirm").show();
+        $(".con").unbind().click(function () {
+            res.call(this, true);
+        })
+        $(".can").unbind().click(function () {
+            $(".confirm").hide();
+            res.call(this, false);
+        })
+    }
+    
+</script>
