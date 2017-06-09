@@ -10,3 +10,12 @@ box.confirm=function(message,callback)
         callback.call(this, false);
     })
 }
+box.confirm=function(callback)
+{
+    $(".con").unbind().click(function () {
+        callback.call(this, true);
+    })
+    $(".can").unbind().click(function () {
+        callback.call(this, false);
+    })
+}

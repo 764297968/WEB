@@ -18,6 +18,7 @@
     <meta charset="utf-8" />
     <script src="../Js/jquery.min.js"></script>
     <script src="bootbox.js"></script>
+    <script src="box.js"></script>
 </head>
 <body>
 
@@ -33,13 +34,18 @@
 
 </html>
 <script>
-    var box = new Object();
+   
     function con()
     {
-        box.confirm("")
-        bootbox.confirm("确定?", function (res) {
-            console.log(2);
+        $(".confirm").show();
+        box.confirm(function (res) {
+            $(".confirm").hide();
+            console.log(res);
         })
+        return;
+        //bootbox.confirm("确定?", function (res) {
+        //    console.log(2);
+        //})
         $(".confirm").show();
         $("#btn input").on("click", function (e) {
             var key = $(this).attr("data-bb-handler");
